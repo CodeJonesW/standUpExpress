@@ -1,0 +1,27 @@
+{
+  "name": "standupexpress",
+  "version": "1.0.0",
+  "description": "",
+  "main": "sequelize.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "morgan": "^1.10.0",
+    "mysql2": "^2.2.5",
+    "sequelize": "^6.3.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CodeJonesW/standUpExpress.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CodeJonesW/standUpExpress/issues"
+  },
+  "homepage": "https://github.com/CodeJonesW/standUpExpress#readme"
+}
