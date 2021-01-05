@@ -1,6 +1,7 @@
 const express = require("express");
 const logger = require("morgan");
-// const sequelize = require("sequelize");
+const StandUp = require("./models/standUp.js");
+const sequelize = require("./sequelize.js");
 // const compression = require("compression");
 
 const PORT = 3000;
@@ -18,6 +19,10 @@ app.use(express.static("public"));
 // routes
 app.use(require("./routes/api.js"));
 
+
 app.listen(PORT, () => {
+    sequelize.sync({ force: true });
+    console.log("All models were synchronized successfully.");
+
   console.log(`App running on port ${PORT}!`);
 });

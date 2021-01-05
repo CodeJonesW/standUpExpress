@@ -1,9 +1,13 @@
 const router = require("express").Router();
-const standUp = require("../models/standUp.js");
+const StandUp = require("../models/standUp.js");
 
 
 router.get("/api/standUp", (req, res) => {
-    res.send("hello from the server")
+    StandUp.findAll().then(data => {
+        console.log(data)
+        res.json(data)
+    })
+    
 });
 
 module.exports = router;

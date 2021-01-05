@@ -1,4 +1,5 @@
 const Sequelize = require("sequelize");
+const StandUp = require("./models/standUp");
 
 const sequelize = new Sequelize('standUp_DB', 'root', 'password', {
     host: 'localhost',
@@ -16,5 +17,7 @@ const test = async () => {
     
 }
 test()
+
+
 
 module.exports = sequelize
