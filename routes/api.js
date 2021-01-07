@@ -10,4 +10,19 @@ router.get("/api/standUp", (req, res) => {
     
 });
 
+router.post("/api/standUp", (req, res) => {
+    StandUp.create({
+        yesterday: 'fixess',
+        today: "stuff to do",
+        blocker: "getting it working"
+      }).then(res => {
+          res.send(res)
+      });
+    
+});
+
+
 module.exports = router;
+
+
+

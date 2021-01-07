@@ -21,8 +21,8 @@ app.use(require("./routes/api.js"));
 
 
 app.listen(PORT, () => {
-    sequelize.sync({ force: true });
+    sequelize.sync({ force: false });
     console.log("All models were synchronized successfully.");
-
+ 
   console.log(`App running on port ${PORT}!`);
 });
