@@ -1,22 +1,18 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require("../db/sequelize");
-const User = require("./user")
-
-
-const StandUp = sequelize.define('standUp', {
-  yesterday: {
+const StandUp = require('./standUp');
+const Team = require("./team")
+const User = sequelize.define('user', {
+  name: {
     type: DataTypes.STRING,
     allowNull: false
   },
-  today: {
+  role: {
     type: DataTypes.STRING,
     allowNull: false
-  },
-  blocker: {
-    type: DataTypes.STRING
   }
 });
 
-StandUp.belongsTo(User)
 
-module.exports =  StandUp
+
+module.exports =  User
