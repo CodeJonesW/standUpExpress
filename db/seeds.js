@@ -6,7 +6,7 @@ const faker = require("faker")
 
  function seedUp(){
      for(let i = 0; i < 100; i++){
-        let newUser = User.create({"name": faker.name.findName(), "email": faker.internet.email()})
+        let newUser = User.create({"name": faker.name.findName(), "email": faker.internet.email(), "password": faker.hacker.verb()})
         let newStandUp = StandUp.create({"yesterday": faker.hacker.phrase(), "today": faker.hacker.phrase(), "blocker": faker.hacker.phrase(), "userId": Math.floor(Math.random() * 101)  })
      }
 }
