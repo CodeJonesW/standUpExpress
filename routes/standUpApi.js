@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const StandUp = require("../models/standUp.js");
 
-
+// find all standUps
 router.get("/api/standUp", (req, res) => {
     StandUp.findAll().then(data => {
         console.log(data)
@@ -10,8 +10,22 @@ router.get("/api/standUp", (req, res) => {
     
 });
 
+
+// find all standUps relative to a userID
+router.get("/api/standUp/:userId", (req, res) => {
+    StandUp.findAll({ where: { userId: req.params.userId } }).then(data => {
+        if (data === null) {
+            res.send('Not found!');
+          } else {
+            res.json(data)
+          }
+    });
+ 
+    
+});
+
 router.post("/api/standUp", (req, res) => {
-    console.log(req.body)
+    console.log(req.body.blocker)
     let newStandup = StandUp.create({
         yesterday: req.body.yesterday,
         today: req.body.today,

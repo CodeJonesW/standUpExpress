@@ -22,7 +22,7 @@ app.use(express.json());
 app.use(express.static("public"));
 
 // routes
-app.use(require("./routes/api.js"));
+app.use(require("./routes/standUpApi.js"));
 
 
 app.listen(PORT, () => {
