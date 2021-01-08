@@ -43,13 +43,13 @@ router.post("/api/login", async (req, res) => {
     console.log("this is my req.body", req.body)
 
     let foundUser = await User.findOne({
-         where: {email: "w@w.com"}
+         where: {email: req.body.email}
     })
 
     if (!foundUser) {
         res.status("404").send("Invalid Email");
     } else {
-        bcrypt.compare("will", foundUser.password, function (err, result) {
+        bcrypt.compare(req.body.password, foundUser.password, function (err, result) {
             console.log(result)
             // if (result == true) {
             //     res.status("200").send(foundUser.dataValues);
