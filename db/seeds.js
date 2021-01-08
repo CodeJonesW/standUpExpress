@@ -1,12 +1,14 @@
 const User = require("../models/user.js")
 const StandUp = require("../models/standUp.js")
 const sequelize = require("./sequelize")
-
+const faker = require("faker")
 
 
  function seedUp(){
-    let will = User.create({"name": "Will", "role": "boss"})
-    let firstStandU = StandUp.create({"yesterday": "fixed it", "today": "boss moves", "blockers": "fixing things", "userId": "1"})
+     for(let i = 0; i < 100; i++){
+        let newUser = User.create({"name": faker.name.findName(), "email": faker.internet.email()})
+        let newStandUp = StandUp.create({"yesterday": faker.hacker.phrase(), "today": faker.hacker.phrase(), "blocker": faker.hacker.phrase(), "userId": Math.floor(Math.random() * 101)  })
+     }
 }
 
 

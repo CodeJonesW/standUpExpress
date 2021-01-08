@@ -23,11 +23,14 @@ app.use(express.static("public"));
 
 // routes
 app.use(require("./routes/standUpApi.js"));
+app.use(require("./routes/userApi.js"));
 
 
 app.listen(PORT, () => {
-    sequelize.sync({ force: false });
-    // seedUp()
+    sequelize.sync({ force: true }).then(() => {
+        seedUp()
+    });
+   
     console.log("All models were synchronized successfully.");
     console.log(`App running on port ${PORT}!`);
 });

@@ -2,6 +2,7 @@ const router = require("express").Router();
 const StandUp = require("../models/standUp.js");
 
 // find all standUps
+// dev only
 router.get("/api/standUp", (req, res) => {
     StandUp.findAll().then(data => {
         console.log(data)
@@ -24,6 +25,7 @@ router.get("/api/standUp/:userId", (req, res) => {
     
 });
 
+// create new standUp
 router.post("/api/standUp", (req, res) => {
     console.log(req.body.blocker)
     let newStandup = StandUp.create({
