@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const User = require("../models/user.js");
 const bcrypt = require('bcrypt');
+const { connect } = require("./standUpApi.js");
 // find all users
 // dev only
 router.get("/api/users", (req, res) => {
@@ -40,8 +41,6 @@ router.post("/api/users", (req, res) => {
 
 router.post("/api/login", async (req, res) => {
 
-    console.log("this is my req.body", req.body)
-
     let foundUser = await User.findOne({
          where: {email: req.body.email}
     })
@@ -50,12 +49,12 @@ router.post("/api/login", async (req, res) => {
         res.status("404").send("Invalid Email");
     } else {
         bcrypt.compare(req.body.password, foundUser.password, function (err, result) {
-            console.log(result)
-            // if (result == true) {
-            //     res.status("200").send(foundUser.dataValues);
-            // } else {
-            //     res.status("404").send("Incorrect Password");
-            // }
+            if (result == true) {
+                console.log("true")
+                res.send({userId: foundUser.id, loggedInStatus: true})
+            } else {
+                res.send("Incorrect Password")
+            }
         });
     }
   

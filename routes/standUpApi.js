@@ -26,14 +26,15 @@ router.get("/api/standUp/:userId", (req, res) => {
 
 // create new standUp
 router.post("/api/standUp", (req, res) => {
-    console.log(req.body.blocker)
+    console.log(req.body)
     let newStandup = StandUp.create({
         yesterday: req.body.yesterday,
         today: req.body.today,
         blocker: req.body.blocker,
         userId: req.body.userId
     })
-    res.send(JSON.stringify(newStandup))
+
+    res.json(newStandup)
 });
 
 

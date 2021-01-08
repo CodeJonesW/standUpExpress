@@ -6,7 +6,7 @@ const compression = require("compression");
 const StandUp = require("./models/standUp.js");
 const User = require("./models/user.js");
 const sequelize = require("./db/sequelize.js");
-const seedUp = require("./db/seeds.js");
+const seeds = require("./db/seeds.js");
 
 const PORT = 3000;
 const app = express();
@@ -37,7 +37,9 @@ app.use(require("./routes/userApi.js"));
 
 app.listen(PORT, () => {
     sequelize.sync({ force: true }).then(() => {
-        seedUp()
+        seeds.seedUsers()
+        .then(() => seeds.seedStandUps())
+        .then(() => console.log("Seeds successfully seeded!"))
     });
    
     console.log("All models were synchronized successfully.");

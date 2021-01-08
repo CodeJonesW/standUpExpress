@@ -4,18 +4,22 @@ const sequelize = require("./sequelize")
 const faker = require("faker")
 
 
- function seedUp(){
+ async function seedUsers(){
    let newUser = User.create({"name": "Will Jones", "email": "w@w.com", "password": "will"})
    
-    for(let i = 0; i < 10; i++){   
+    for(let i = 0; i < 5; i++){   
       let newUser = User.create({"name": faker.name.findName(), "email": faker.internet.email(), "password": faker.hacker.verb()})
     }
 
-    // for(let i = 0; i < 50; i++){
-    //   let newStandUp = StandUp.create({"yesterday": faker.hacker.phrase(), "today": faker.hacker.phrase(), "blocker": faker.hacker.phrase(), "userId": Math.floor(Math.random() * 11)  })
-    // }
+
 }
 
+  async function seedStandUps(){
+      for(let i = 0; i < 3; i++){
+      let newStandUp = StandUp.create({"yesterday": faker.hacker.phrase(), "today": faker.hacker.phrase(), "blocker": faker.hacker.phrase(), "userId": "1"  })
+      }
+  }
 
 
-module.exports = seedUp
+
+module.exports = {seedUsers: seedUsers, seedStandUps: seedStandUps}
