@@ -39,7 +39,7 @@ router.post("/api/users", (req, res) => {
 
 
 router.post("/api/login", async (req, res) => {
-    
+
     console.log("this is my req.body", req.body)
 
     let foundUser = await User.findOne({
@@ -47,15 +47,15 @@ router.post("/api/login", async (req, res) => {
     })
 
     if (!foundUser) {
-        res.redirect('/');
+        res.status("404").send("Invalid Email");
     } else {
         bcrypt.compare("will", foundUser.password, function (err, result) {
-            if (result == true) {
-                res.send('match');
-                console.log("match")
-            } else {
-                res.send('Incorrect password');
-            }
+            console.log(result)
+            // if (result == true) {
+            //     res.status("200").send(foundUser.dataValues);
+            // } else {
+            //     res.status("404").send("Incorrect Password");
+            // }
         });
     }
   
