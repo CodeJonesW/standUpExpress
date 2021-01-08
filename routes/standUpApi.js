@@ -37,6 +37,9 @@ router.post("/api/standUp", (req, res) => {
 });
 
 
+
+
+
 module.exports = router;
 
 

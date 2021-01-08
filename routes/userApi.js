@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const User = require("../models/user.js");
-
+const bcrypt = require('bcrypt');
 // find all users
 // dev only
 router.get("/api/users", (req, res) => {
@@ -36,6 +36,30 @@ router.post("/api/users", (req, res) => {
     })
     
 });
+
+
+router.post("/api/login", async (req, res) => {
+    
+    console.log("this is my req.body", req.body)
+
+    let foundUser = await User.findOne({
+         where: {email: "w@w.com"}
+    })
+
+    if (!foundUser) {
+        res.redirect('/');
+    } else {
+        bcrypt.compare("will", foundUser.password, function (err, result) {
+            if (result == true) {
+                res.send('match');
+                console.log("match")
+            } else {
+                res.send('Incorrect password');
+            }
+        });
+    }
+  
+})
 
 
 module.exports = router;
