@@ -15,7 +15,7 @@ const faker = require("faker")
 }
 
   async function seedStandUps(){
-      for(let i = 0; i < 3; i++){
+      for(let i = 0; i < 50; i++){
       let newStandUp = StandUp.create({"yesterday": faker.hacker.phrase(), "today": faker.hacker.phrase(), "blocker": faker.hacker.phrase(), "userId": "1"  })
       }
   }

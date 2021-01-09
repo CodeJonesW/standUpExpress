@@ -14,7 +14,11 @@ router.get("/api/standUp", (req, res) => {
 
 // find all standUps relative to a userID
 router.get("/api/standUp/:userId", (req, res) => {
-    StandUp.findAll({ where: { userId: req.params.userId } }).then(data => {
+    StandUp.findAll({ where: { userId: req.params.userId },
+         order: [
+        ['id', 'DESC'],
+        ['createdAt', 'ASC'],
+    ], }).then(data => {
         if (data === null) {
             res.send('Not found!');
           } else {
