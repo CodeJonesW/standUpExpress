@@ -53,7 +53,7 @@ router.post("/api/login", async (req, res) => {
                 console.log("true")
                 res.send({userId: foundUser.id, loggedInStatus: true})
             } else {
-                res.send("Incorrect Password")
+                res.send('Incorrect Password')
             }
         });
     }

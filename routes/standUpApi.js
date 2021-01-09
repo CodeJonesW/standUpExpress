@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const StandUp = require("../models/standUp.js");
+const User = require("../models/user.js");
 
 // find all standUps
 // dev only
@@ -33,6 +34,7 @@ router.post("/api/standUp", (req, res) => {
         blocker: req.body.blocker,
         userId: req.body.userId
     }).then(data => {
+        User.findOne({where: {id: data.id}})
         res.json(data)
     })
 
