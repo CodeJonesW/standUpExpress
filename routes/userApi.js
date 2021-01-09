@@ -39,7 +39,7 @@ router.post("/api/users", (req, res) => {
     
 });
 
-
+// implement web tokens?
 router.post("/api/login", async (req, res) => {
     let foundUser = await User.findOne({
          where: {email: req.body.email}
@@ -49,7 +49,7 @@ router.post("/api/login", async (req, res) => {
     } else {
         bcrypt.compare(req.body.password, foundUser.password, function (err, result) {
             if (result == true) {
-                console.log("true")
+                console.log("password matched")
                 res.send({userId: foundUser.id, loggedInStatus: true})
             } else {
                 res.send('Incorrect Password')
