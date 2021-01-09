@@ -33,7 +33,7 @@ router.post("/api/users", (req, res) => {
         password: req.body.password,
         email: req.body.email,
     }).then(data => {
-        res.send(JSON.stringify(data))
+        res.send({data, loggedInStatus: true})
     })
     
 });

@@ -5,18 +5,21 @@ const faker = require("faker")
 
 
  async function seedUsers(){
-   let newUser = User.create({"name": "Will Jones", "email": "w@w.com", "password": "will"})
+   await User.create({"name": "Will Jones", "email": "w@w.com", "password": "will"})
+   await User.create({"name": "Loni Davis", "email": "l@l.com", "password": "will"})
    
     for(let i = 0; i < 5; i++){   
-      let newUser = User.create({"name": faker.name.findName(), "email": faker.internet.email(), "password": faker.hacker.verb()})
+      await User.create({"name": faker.name.findName(), "email": faker.internet.email(), "password": faker.hacker.verb()})
     }
 
 
 }
 
   async function seedStandUps(){
-      for(let i = 0; i < 50; i++){
-      let newStandUp = StandUp.create({"yesterday": faker.hacker.phrase(), "today": faker.hacker.phrase(), "blocker": faker.hacker.phrase(), "userId": "1"  })
+      for(let i = 1; i < 50; i++){
+      await StandUp.create({"yesterday": faker.hacker.phrase(), "today": faker.hacker.phrase(), "blocker": faker.hacker.phrase(), "userId": "1"  })
+      await StandUp.create({"yesterday": faker.hacker.phrase(), "today": faker.hacker.phrase(), "blocker": faker.hacker.phrase(), "userId": "2"  })
+      await StandUp.create({"yesterday": faker.hacker.phrase(), "today": faker.hacker.phrase(), "blocker": faker.hacker.phrase(), "userId": "2"  })
       }
   }
 
