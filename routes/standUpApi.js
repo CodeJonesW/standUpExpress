@@ -32,9 +32,11 @@ router.post("/api/standUp", (req, res) => {
         today: req.body.today,
         blocker: req.body.blocker,
         userId: req.body.userId
+    }).then(data => {
+        res.json(data)
     })
 
-    res.json(newStandup)
+    
 });
 
 
