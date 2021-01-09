@@ -28,10 +28,10 @@ router.get("/api/users/:id", (req, res) => {
 
 // create new user
 router.post("/api/users", (req, res) => {
-    console.log(User)
+    console.log(req.body)
     let newUser = User.create({
-        name: req.body.name,
-        role: req.body.role,
+        password: req.body.password,
+        email: req.body.email,
     }).then(data => {
         res.send(JSON.stringify(data))
     })
