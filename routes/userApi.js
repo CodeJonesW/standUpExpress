@@ -2,15 +2,16 @@ const router = require("express").Router();
 const User = require("../models/user.js");
 const bcrypt = require('bcrypt');
 const { connect } = require("./standUpApi.js");
+
 // find all users
 // dev only
-router.get("/api/users", (req, res) => {
-    User.findAll().then(data => {
-        console.log(data)
-        res.json(data)
-    })
+// router.get("/api/users", (req, res) => {
+//     User.findAll().then(data => {
+//         console.log(data)
+//         res.json(data)
+//     })
     
-});
+// });
 
 
 // find user by id
@@ -40,11 +41,9 @@ router.post("/api/users", (req, res) => {
 
 
 router.post("/api/login", async (req, res) => {
-
     let foundUser = await User.findOne({
          where: {email: req.body.email}
     })
-
     if (!foundUser) {
         res.status("404").send("Invalid Email");
     } else {
@@ -56,8 +55,7 @@ router.post("/api/login", async (req, res) => {
                 res.send('Incorrect Password')
             }
         });
-    }
-  
+    } 
 })
 
 
