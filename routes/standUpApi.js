@@ -46,6 +46,12 @@ router.post("/api/standUp", (req, res) => {
 });
 
 
+router.delete("/api/standUp/:id", async (req, res) => {
+    let standUpForDelete = await StandUp.findOne({where: {id: req.params.id}})
+    await standUpForDelete.destroy()
+    res.send({msg:`StandUp was deleted`})
+})
+
 
 
 
