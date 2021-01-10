@@ -62,8 +62,32 @@ router.get("/api/standUp/:userId", (req, res) => {
 });
 
 // create new standUp
+router.options('/api/standUp', cors())
 router.post("/api/standUp", (req, res) => {
-    console.log(req.body)
+
+    // console.log(req.headers)
+
+    const token = req.headers.authorization
+	// if the cookie is not set, return an unauthorized error
+	if (!token) {
+		return res.status(401).end()
+    }
+    
+    let payload
+	try {
+
+		payload = jwt.verify(token, jwtKey)
+	} catch (e) {
+		if (e instanceof jwt.JsonWebTokenError) {
+			// if the error thrown is because the JWT is unauthorized, return a 401 error
+			return res.status(401).end()
+		}
+		// otherwise, return a bad request error
+		return res.status(400).end()
+    }
+    console.log(payload)
+
+
     let newStandup = StandUp.create({
         yesterday: req.body.yesterday,
         today: req.body.today,
