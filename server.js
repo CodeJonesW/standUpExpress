@@ -1,13 +1,13 @@
 const express = require("express");
 const logger = require("morgan");
 const compression = require("compression");
-
+const cookieParser = require("cookie-parser")
 
 const StandUp = require("./models/standUp.js");
 const User = require("./models/user.js");
 const sequelize = require("./db/sequelize.js");
 const seeds = require("./db/seeds.js");
-
+require('dotenv').config();
 const PORT = 3000;
 const app = express();
 
@@ -17,7 +17,7 @@ app.use(logger("dev"));
 app.use(compression());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
+app.use(cookieParser())
 
 app.use(express.static("public"));
 
@@ -43,6 +43,7 @@ app.listen(PORT, () => {
             console.log("All models were synchronized successfully.");
             console.log(`App running on port ${PORT}!`);
             console.log("Seeds successfully seeded!")
+            // console.log(process.env)
         })
     });
     // sequelize.sync().then(() => {

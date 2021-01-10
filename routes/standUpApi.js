@@ -2,6 +2,14 @@ const router = require("express").Router();
 const StandUp = require("../models/standUp.js");
 const User = require("../models/user.js");
 const cors = require("cors")
+
+
+const jwt = require("jsonwebtoken")
+
+const jwtKey = process.env.jwtKey
+const jwtExpirySeconds = 300
+
+
 // find all standUps
 // dev only
 router.get("/api/standUp", (req, res) => {
@@ -14,6 +22,30 @@ router.get("/api/standUp", (req, res) => {
 
 // find all standUps relative to a userID
 router.get("/api/standUp/:userId", (req, res) => {
+    console.log(req.headers)
+    // const token = req.cookies.token
+    const token = req.headers.authorization
+	// if the cookie is not set, return an unauthorized error
+	if (!token) {
+		return res.status(401).end()
+    }
+    
+    let payload
+	try {
+
+		payload = jwt.verify(token, jwtKey)
+	} catch (e) {
+		if (e instanceof jwt.JsonWebTokenError) {
+			// if the error thrown is because the JWT is unauthorized, return a 401 error
+			return res.status(401).end()
+		}
+		// otherwise, return a bad request error
+		return res.status(400).end()
+    }
+    console.log(payload)
+
+
+
     StandUp.findAll({ where: { userId: req.params.userId },
          order: [
         ['id', 'DESC'],

@@ -2,6 +2,11 @@ const router = require("express").Router();
 const User = require("../models/user.js");
 const bcrypt = require('bcrypt');
 const { connect } = require("./standUpApi.js");
+const jwt = require("jsonwebtoken")
+
+const jwtKey = process.env.jwtKey
+const jwtExpirySeconds = 300
+
 
 // find all users
 // dev only
@@ -69,8 +74,14 @@ router.post("/api/login", async (req, res) => {
     } else {
         bcrypt.compare(req.body.password, foundUser.password, function (err, result) {
             if (result == true) {
+                const token = jwt.sign({ email: foundUser.email }, jwtKey, {
+                    algorithm: "HS256",
+                    expiresIn: jwtExpirySeconds,
+                })
+                console.log("token:", token)
                 console.log("password matched")
-                res.send({userId: foundUser.id, loggedInStatus: true})
+                res.cookie("token", token, { maxAge: jwtExpirySeconds * 1000 })
+                res.send({userId: foundUser.id, loggedInStatus: true, token: token})
             } else {
                 res.send({ msg: "Incorrect password"})
             }
