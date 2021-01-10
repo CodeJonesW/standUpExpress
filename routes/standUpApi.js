@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const StandUp = require("../models/standUp.js");
 const User = require("../models/user.js");
-
+const cors = require("cors")
 // find all standUps
 // dev only
 router.get("/api/standUp", (req, res) => {
@@ -45,11 +45,17 @@ router.post("/api/standUp", (req, res) => {
     
 });
 
-
-router.delete("/api/standUp/:id", async (req, res) => {
+ // enable pre-flight request for DELETE request
+router.options('/api/standUp/:id', cors())
+router.delete("/api/standUp/:id", cors(), async (req, res) => {
     let standUpForDelete = await StandUp.findOne({where: {id: req.params.id}})
-    await standUpForDelete.destroy()
-    res.send({msg:`StandUp was deleted`})
+    if(!standUpForDelete){
+        res.send({msg: "StandUp does not exist"})
+    }else {
+        await standUpForDelete.destroy()
+        res.send({msg:`StandUp was deleted`})
+    }
+
 })
 
 
