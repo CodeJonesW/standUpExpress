@@ -82,7 +82,7 @@ router.post("/api/login", async (req, res) => {
         });
     }
     
-    router.options('/api/user/refresh', cors())
+    // router.options('/api/user/refresh', cors())
     router.get("/api/user/refresh", async (req, res) => {
         // (BEGIN) The code uptil this point is the same as the first part of the `welcome` route
        
