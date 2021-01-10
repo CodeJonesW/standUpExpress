@@ -65,14 +65,14 @@ router.post("/api/login", async (req, res) => {
          where: {email: req.body.email}
     })
     if (!foundUser) {
-        res.status("404").send("Invalid Email");
+        res.status("404").send({ msg: "Invalid Email"});
     } else {
         bcrypt.compare(req.body.password, foundUser.password, function (err, result) {
             if (result == true) {
                 console.log("password matched")
                 res.send({userId: foundUser.id, loggedInStatus: true})
             } else {
-                res.send('Incorrect Password')
+                res.send({ msg: "Incorrect password"})
             }
         });
     } 
