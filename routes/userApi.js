@@ -58,6 +58,7 @@ router.post("/api/users", (req, res) => {
 });
 
 // user login
+router.options('/api/login', cors())
 router.post("/api/login", async (req, res) => {
     let foundUser = await User.findOne({
          where: {email: req.body.email}
