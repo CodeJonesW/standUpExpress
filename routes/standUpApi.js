@@ -21,6 +21,7 @@ const jwtExpirySeconds = 300
 
 
 // find all standUps relative to a userID
+router.options('/api/standUp/:userId', cors())
 router.get("/api/standUp/:userId", (req, res) => {
     // console.log(req.headers)
     // const token = req.cookies.token
@@ -104,7 +105,7 @@ router.post("/api/standUp", (req, res) => {
  // enable pre-flight request for DELETE request
 router.options('/api/standUp/:id', cors())
 router.delete("/api/standUp/:id", cors(), async (req, res) => {
-
+    
     const token = req.headers.authorization
 	// if the cookie is not set, return an unauthorized error
 	if (!token) {
