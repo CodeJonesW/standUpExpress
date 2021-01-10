@@ -162,7 +162,7 @@ router.post("/api/standUp/:standUpId", async (req, res) => {
     if(!standUpToUpdate){
         res.send({msg: "StandUp does not exist"})
     }else {
-        standUpToUpdate.archived = !standUpToUpdate.archived
+        standUpToUpdate.complete = !standUpToUpdate.complete
         await standUpToUpdate.save()
         let refreshedStandUps = await StandUp.findAll({where: {userId: standUpToUpdate.userId}})
         res.send({"message": "Updated", "standUps": refreshedStandUps})

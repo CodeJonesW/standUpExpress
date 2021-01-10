@@ -15,7 +15,7 @@ const StandUp = sequelize.define('standUp', {
   blocker: {
     type: DataTypes.STRING
   },
-  archived: {
+  complete: {
     type: DataTypes.BOOLEAN,
     defaultValue: false
   }
