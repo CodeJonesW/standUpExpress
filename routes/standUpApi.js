@@ -133,6 +133,43 @@ router.delete("/api/standUp/:id", cors(), async (req, res) => {
 
 })
 
+router.options('/api/standUp/:standUpId', cors())
+router.post("/api/standUp/:standUpId", async (req, res) => {
+
+    const token = req.headers.authorization
+	// if the cookie is not set, return an unauthorized error
+	if (!token) {
+		return res.status(401).end()
+    }
+    
+    let payload
+	try {
+		payload = jwt.verify(token, jwtKey)
+	} catch (e) {
+		if (e instanceof jwt.JsonWebTokenError) {
+			// if the error thrown is because the JWT is unauthorized, return a 401 error
+			return res.status(401).end()
+		}
+		// otherwise, return a bad request error
+		return res.status(400).end()
+    }
+
+
+
+    let standUpToUpdateId = req.params.standUpId
+    let standUpToUpdate = await StandUp.findOne({where: {id: standUpToUpdateId}})
+
+    if(!standUpToUpdate){
+        res.send({msg: "StandUp does not exist"})
+    }else {
+        standUpToUpdate.archived = !standUpToUpdate.archived
+        await standUpToUpdate.save()
+        let refreshedStandUps = await StandUp.findAll({where: {userId: standUpToUpdate.userId}})
+        res.send({"message": "Updated", "standUps": refreshedStandUps})
+    }
+
+})
+
 
 
 
