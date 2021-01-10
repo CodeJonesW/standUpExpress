@@ -20,17 +20,17 @@ const jwtExpirySeconds = 300
 
 
 // find user by id
-router.get("/api/users/:id", (req, res) => {
-    User.findAll({ where: { id: req.params.id } }).then(data => {
-        if (data === null) {
-            res.send('Not found!');
-          } else {
-            res.json(data)
-          }
-    });
+// router.get("/api/users/:id", (req, res) => {
+//     User.findAll({ where: { id: req.params.id } }).then(data => {
+//         if (data === null) {
+//             res.send('Not found!');
+//           } else {
+//             res.json(data)
+//           }
+//     });
  
     
-});
+// });
 
 // create new user
 router.post("/api/users", (req, res) => {
