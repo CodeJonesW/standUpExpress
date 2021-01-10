@@ -3,7 +3,7 @@ const User = require("../models/user.js");
 const bcrypt = require('bcrypt');
 const { connect } = require("./standUpApi.js");
 const jwt = require("jsonwebtoken")
-
+const cors = require("cors")
 const jwtKey = process.env.jwtKey
 const jwtExpirySeconds = 300
 
@@ -54,17 +54,9 @@ router.post("/api/users", (req, res) => {
         }
       })
       .catch(err => console.log(err));
-    
-    
-    
-    
-    // .then(data => {
-    //     res.send({data, loggedInStatus: true})
-    // })
-    
 });
 
-// implement web tokens?
+// user login
 router.post("/api/login", async (req, res) => {
     let foundUser = await User.findOne({
          where: {email: req.body.email}

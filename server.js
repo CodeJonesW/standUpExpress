@@ -36,20 +36,20 @@ app.use(require("./routes/userApi.js"));
 
 
 app.listen(PORT, () => {
-    sequelize.sync({ force: true }).then(() => {
-        seeds.seedUsers()
-        .then(() => seeds.seedStandUps())
-        .then(() => {
-            console.log("All models were synchronized successfully.");
-            console.log(`App running on port ${PORT}!`);
-            console.log("Seeds successfully seeded!")
-            // console.log(process.env)
-        })
-    });
-    // sequelize.sync().then(() => {
-    //     console.log("All models were synchronized successfully.");
-    //     console.log(`App running on port ${PORT}!`);
+    // sequelize.sync({ force: true }).then(() => {
+    //     seeds.seedUsers()
+    //     .then(() => seeds.seedStandUps())
+    //     .then(() => {
+    //         console.log("All models were synchronized successfully.");
+    //         console.log(`App running on port ${PORT}!`);
+    //         console.log("Seeds successfully seeded!")
+    //         // console.log(process.env)
+    //     })
     // })
+    sequelize.sync().then(() => {
+        console.log("All models were synchronized successfully.");
+        console.log(`App running on port ${PORT}!`);
+    })
    
 
 });
