@@ -30,12 +30,32 @@ router.get("/api/users/:id", (req, res) => {
 // create new user
 router.post("/api/users", (req, res) => {
     console.log(req.body)
-    let newUser = User.create({
-        password: req.body.password,
-        email: req.body.email,
-    }).then(data => {
-        res.send({data, loggedInStatus: true})
-    })
+    User.findOne({
+        where: {email: req.body.email}
+   }).then(user => {
+        if (!user) {
+          User.create({
+            email: req.body.email,
+            password: req.body.password
+          })
+            .then(response => {
+              res.json(response);
+            })
+            .catch(err => console.log(err));
+        } else {
+          res.json({
+            msg: "User already exists!"
+          });
+        }
+      })
+      .catch(err => console.log(err));
+    
+    
+    
+    
+    // .then(data => {
+    //     res.send({data, loggedInStatus: true})
+    // })
     
 });
 
