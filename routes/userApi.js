@@ -70,7 +70,7 @@ router.post("/api/login", async (req, res) => {
                     algorithm: "HS256",
                     expiresIn: jwtExpirySeconds,
                 })
-                console.log("token:", token)
+                // console.log("token:", token)
                 console.log("password matched")
                 res.cookie("token", token, { maxAge: jwtExpirySeconds * 1000 })
                 res.send({userId: foundUser.id, loggedInStatus: true, token: token})
