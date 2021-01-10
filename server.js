@@ -8,7 +8,8 @@ const User = require("./models/user.js");
 const sequelize = require("./db/sequelize.js");
 const seeds = require("./db/seeds.js");
 require('dotenv').config();
-const PORT = 3000;
+
+const PORT = process.env.PORT || 3000;
 const app = express();
 
 app.use(logger("dev"));
