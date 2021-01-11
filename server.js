@@ -21,11 +21,6 @@ app.use(function(req, res, next) {
         res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers,X-Access-Token,XKey,Authorization');
     
 
-        if ('OPTIONS' == req.method) {
-            res.send(200);
-          } else {
-            next();
-          }
 });
 
 app.use(logger("dev"));
