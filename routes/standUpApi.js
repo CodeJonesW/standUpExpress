@@ -134,8 +134,8 @@ router.delete("/api/standUp/:id", cors(), async (req, res) => {
 
 })
 
-router.options('/api/standUp/:standUpId', cors())
-router.post("/api/standUp/:standUpId", async (req, res) => {
+// router.options('/api/standUp/:standUpId', cors())
+router.post("/api/standUp/:standUpId", cors(), async (req, res) => {
 
     const token = req.headers.authorization
 	// if the cookie is not set, return an unauthorized error
