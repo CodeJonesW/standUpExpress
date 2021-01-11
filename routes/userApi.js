@@ -124,22 +124,13 @@ router.post("/api/login", async (req, res) => {
 
         User.findOne({where: {email: payload.email }}).then(userData => {
             StandUp.findAll({where: {userId: userData.id}}).then(standUpData => {
-                res.send({"newToken": newToken, userId: userData.id, standUps: standUpData})
+                res.send({"token": newToken, userId: userData.id, standUps: standUpData})
             })
 
 
             
            
         })
-
-        console.log("made it")
-        console.log(payload, newToken)
-
-        // Set the new token as the users `token` cookie
-        // res.cookie("token", newToken, { maxAge: jwtExpirySeconds * 1000 })
-
-
-        res.send({msg: "extended", token: newToken})
 
     } )
 })
