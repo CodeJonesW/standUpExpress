@@ -31,6 +31,6 @@ Users can update complete status of standUp
 Deployed with Heroku
 
 ## FrontEnd GitHub Repo
-https://github.com/CodeJonesW/standUp
+* https://github.com/CodeJonesW/standUp
 
 - - -
