@@ -138,7 +138,11 @@ router.post("/api/login", async (req, res) => {
         // Set the new token as the users `token` cookie
         // res.cookie("token", newToken, { maxAge: jwtExpirySeconds * 1000 })
 
+<<<<<<< HEAD
         // res.send({msg: "extended", token: newToken})
+=======
+        res.send({msg: "extended", token: newToken})
+>>>>>>> parent of 043a22b... cors
     } )
 })
 
