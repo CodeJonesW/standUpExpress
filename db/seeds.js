@@ -7,7 +7,8 @@ const faker = require("faker")
  async function seedUsers(){
    await User.create({"name": "Will Jones", "email": "w@w.com", "password": "will"})
    await User.create({"name": "Loni Davis", "email": "l@l.com", "password": "will"})
-   
+   await User.create({"name": "Tom Maker", "email": "demo@demo.com", "password": "demo"})
+
     for(let i = 0; i < 5; i++){   
       await User.create({"name": faker.name.findName(), "email": faker.internet.email(), "password": faker.hacker.verb()})
     }

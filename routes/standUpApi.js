@@ -10,16 +10,6 @@ const jwtKey = process.env.jwtKey
 const jwtExpirySeconds = 300
 
 
-// find all standUps
-// dev only
-// router.get("/api/standUp", (req, res) => {
-//     StandUp.findAll().then(data => {
-//         res.json(data)
-//     })
-    
-// });
-
-
 // find all standUps relative to a userID
 router.options('/api/standUp/:userId', cors())
 router.get("/api/standUp/:userId", (req, res) => {
