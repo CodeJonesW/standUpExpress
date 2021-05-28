@@ -45,7 +45,10 @@ router.post("/api/users", (req, res) => {
           .then((response) => {
             res.json(response);
           })
-          .catch((err) => res.send(err));
+          .catch((err) => {
+            res.send(err);
+            console.log(err);
+          });
       } else {
         res.json({
           msg: "User already exists!",
