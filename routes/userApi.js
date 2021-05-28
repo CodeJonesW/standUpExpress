@@ -43,6 +43,7 @@ router.post("/api/users", (req, res) => {
           password: req.body.password,
         })
           .then((response) => {
+            console.log(response);
             res.json(response);
           })
           .catch((err) => {
@@ -55,7 +56,10 @@ router.post("/api/users", (req, res) => {
         });
       }
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      console.log(err);
+      res.send(err);
+    });
 });
 
 // user login
